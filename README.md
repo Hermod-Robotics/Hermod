@@ -1,2 +1,250 @@
-# Hermod
-AI-native infrastructure for robot engineering. Generate firmware, URDF, ROS drivers, simulation &amp; BOM from one hardware description file, with hardware-aware AI agents operating within safety boundaries.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Hermod-Robotics/.github/main/assets/Hermod_Logo.png" alt="Hermod" height="100">
+</p>
+
+<h1 align="center">Hermod</h1>
+
+<p align="center">
+  <strong>AI-native infrastructure for robot engineering.</strong><br>
+  <sub>机器人工程的 AI Agent 原生基础设施</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Hermod-Robotics/hermod/actions"><img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D20-success" alt="Node.js >= 20"></a>
+  <a href="https://pnpm.io"><img src="https://img.shields.io/badge/pnpm-9-orange" alt="pnpm"></a>
+  <img src="https://img.shields.io/badge/tests-19%20passed-brightgreen" alt="19 tests passed">
+</p>
+
+---
+
+## What is Hermod? &nbsp;/&nbsp; 这是什么？
+
+**One hardware description file. A complete robot project — from firmware to simulation.**
+
+一份硬件描述文件，生成从固件到仿真的完整机器人项目。
+
+You describe what your robot *is* — motors, sensors, MCU, battery. Hermod generates everything it *needs* — firmware, URDF, ROS 2 drivers, simulation config, BOM, and AI agent context.
+
+你写一个 `robot.hardware.yaml`，Hermod 自动生成固件、URDF、ROS 驱动包、仿真配置、BOM 物料清单，以及 AI Agent 上下文文件。
+
+---
+
+## 30-Second Demo &nbsp;/&nbsp; 30 秒演示
+
+```yaml
+# robot.hardware.yaml — the only file you write
+# 你唯一需要写的文件
+
+robot:
+  name: "巡检机器人"
+  type: "diff_drive"
+  mcu: "stm32f407"
+
+joints:
+  - name: "left_wheel"
+    type: "active"
+    motor: "dji-m3508"        # references knowledge base
+    driver: "drv8301"
+    canId: 0x201
+    role: "drive"
+  - name: "right_wheel"
+    type: "active"
+    motor: "dji-m3508"
+    driver: "drv8301"
+    canId: 0x202
+    role: "drive"
+
+sensors:
+  - name: "imu"
+    model: "bmi088"
+    interface: "SPI"
+    port: "SPI2"
+  - name: "lidar"
+    model: "rplidar-a3"
+    interface: "UART"
+    port: "/dev/ttyUSB0"
+
+power:
+  battery: "6s-lipo"
+  voltageNominal: 22.2
+  voltageRange: [18.0, 25.2]
+```
+
+```bash
+# One command → 11 files → runnable robot project
+# 一条命令 → 11 个文件 → 可运行的机器人项目
+npx tsx scripts/generate.ts
+docker compose up   # Gazebo simulation / 启动仿真
+```
+
+---
+
+## What Gets Generated? &nbsp;/&nbsp; 生成了什么？
+
+| Category &nbsp;/&nbsp; 类别 | Files &nbsp;/&nbsp; 文件 | Description |
+|---|---|---|
+| **Firmware** &nbsp; 固件 | `can_config.h`, `motor_foc.cpp`, `safety/limits.h` | CAN topology + FOC control + @ai-lock safety boundaries |
+| **URDF** &nbsp; 机器人模型 | `robot.urdf.xacro` | Full kinematic tree with sensor mounts |
+| **ROS 2** &nbsp; 驱动 | `hardware_interface.cpp`, `bringup.launch.py` | ros2_control SystemInterface + sensor drivers |
+| **Simulation** &nbsp; 仿真 | `robot.sdf`, `docker-compose.yml` | Gazebo world + one-command startup |
+| **Docs** &nbsp; 文档 | `BOM.md`, `AI_ANNOTATIONS.md` | Bill of materials, annotation reference |
+| **AI Context** &nbsp; AI 上下文 | `CLAUDE.md` | Hardware config, build commands, safety constraints |
+
+---
+
+## Architecture &nbsp;/&nbsp; 架构
+
+```
+robot.hardware.yaml          # You write this / 你只需要写这个
+        │
+        ▼
+┌───────────────────────────┐
+│   Hermod Engine            │
+│   ├── Schema Validation    │  Structural check / 结构校验
+│   ├── Hardware Validation  │  CAN conflicts, power budget, peripheral limits
+│   └── Code Generation      │  8 EJS templates × 7 generators
+└───────────────────────────┘
+        │
+        ▼
+  Complete Robot Project     # 11 files, ready to build & simulate
+  完整机器人项目              # 11 个文件，可直接编译和仿真
+```
+
+### Three-Layer Engine &nbsp;/&nbsp; 三层引擎
+
+```
+Layer 3: AI Safety Annotations @ai-lock / @ai-critical / @ai-extend
+Layer 2: Hardware Description → Code Generation
+Layer 1: Standard Parts Knowledge Base (motors, sensors, drivers, MCUs)
+```
+
+---
+
+## Project Status &nbsp;/&nbsp; 项目状态
+
+### Phase 1 ✅ Complete
+
+- **Engine**: types, schema validation, hardware validation, code generation
+- **Knowledge Base**: 7 entries (2 motors, 1 driver, 2 sensors, 1 MCU, 1 battery)
+- **Templates**: 8 EJS templates covering firmware, URDF, ROS 2, simulation, docs
+- **Tests**: 19 tests passing
+- **Demo**: `examples/diff-drive-inspector/` — YAML → 11 files → Gazebo simulation
+
+| Module | Status | Tests |
+|--------|:------:|:-----:|
+| `@hermod/engine` — types, schema, validator | ✅ | 12 |
+| `@hermod/engine` — generators | ✅ | 7 |
+| `@hermod/knowledge` — 知识库 | ✅ 7 entries | — |
+| `@hermod/cli` — 交互式 CLI | ⏳ Phase 3 | — |
+| EJS Templates | ✅ 8 templates | — |
+| Demo — diff-drive inspector | ✅ | — |
+
+### Roadmap
+
+| Phase | Goal | Status |
+|-------|------|:------:|
+| **Phase 1** | Core engine + demo | ✅ |
+| **Phase 2** | 30+ KB entries, 4 robot types, wiring diagrams | ⏳ |
+| **Phase 3** | CLI wizard, agent workflow integration, npm publish | ⏳ |
+
+---
+
+## Repository Structure &nbsp;/&nbsp; 仓库结构
+
+```
+Hermod/
+├── packages/
+│   ├── engine/                     # Core engine
+│   │   └── src/
+│   │       ├── types.ts              # 15+ type definitions
+│   │       ├── schema.ts             # Structural validation
+│   │       ├── validator.ts          # CAN/power/peripheral checks
+│   │       ├── renderer.ts           # EJS rendering + file I/O
+│   │       └── generators/           # 7 code generators
+│   │           ├── firmware.ts       # CAN config, FOC, safety
+│   │           ├── urdf.ts           # Robot model
+│   │           ├── ros2-driver.ts    # ros2_control interface
+│   │           ├── gazebo.ts         # SDF world + Docker
+│   │           ├── bom.ts            # Bill of materials
+│   │           ├── claude-md.ts      # AI agent context
+│   │           └── annotations.ts    # AI annotation reference
+│   ├── knowledge/                   # Standard parts library (YAML)
+│   │   ├── motors/                   # dji_m3508, tmotor_ak80-9
+│   │   ├── sensors/                  # bmi088, rplidar_a3
+│   │   ├── drivers/                  # drv8301
+│   │   ├── mcus/                     # stm32f407
+│   │   ├── batteries/                # 6s_lipo
+│   │   └── INDEX.yaml
+│   └── cli/                         # Interactive CLI (Phase 3)
+├── templates/                       # EJS templates (8 files)
+│   ├── firmware/
+│   ├── urdf/
+│   ├── ros2/
+│   └── docs/
+├── examples/
+│   └── diff-drive-inspector/        # Complete demo
+│       ├── robot.hardware.yaml       # ← the only file you write
+│       ├── scripts/generate.ts       # Demo runner
+│       └── generated/                # ← 11 output files
+└── package.json                     # pnpm monorepo root
+```
+
+---
+
+## Quick Start &nbsp;/&nbsp; 快速开始
+
+```bash
+# Clone
+git clone https://github.com/Hermod-Robotics/hermod.git
+cd hermod
+
+# Install
+pnpm install
+
+# Build engine
+pnpm -C packages/engine build
+
+# Run tests
+pnpm test
+
+# Generate the demo project
+pnpm exec tsx examples/diff-drive-inspector/scripts/generate.ts
+
+# Explore the output
+tree examples/diff-drive-inspector/generated
+```
+
+---
+
+## AI Agent-Native Design &nbsp;/&nbsp; AI Agent 原生设计
+
+Every generated file includes `@ai-*` annotations that AI agents (Claude Code, Cursor, Copilot) understand:
+
+| Annotation | Meaning | Agent Behavior |
+|------------|---------|---------------|
+| `@ai-lock` | Physical safety boundary | Read-only — requires operator override to modify |
+| `@ai-critical` | Important parameter | May suggest changes, must request approval |
+| `@ai-default` | Experience-based default | May modify with documented reasoning |
+| `@ai-context` | Module description | Informational only |
+| `@ai-extend` | Extension point | Safe to add new code here |
+| `@ai-telemetry` | Observable data channel | May read at runtime for debugging |
+
+---
+
+## Contribute &nbsp;/&nbsp; 参与贡献
+
+Hermod is open source. Contributions welcome:
+
+- **Hardware parameters**: submit new motor/sensor/driver/MCU entries
+- **Templates**: add or improve EJS templates
+- **Generators**: extend or add new code generators
+- **Bug reports & ideas**: [Discussions](https://github.com/Hermod-Robotics/hermod/discussions)
+
+---
+
+<p align="center">
+  <sub>Named after Hermóðr, the Norse messenger who crossed boundaries between worlds — carrying intent across hardware, software, and AI.</sub><br>
+  <sub>以北欧神话信使 Hermóðr 命名 — 在硬件、软件与 AI 之间传递设计意图。</sub>
+</p>

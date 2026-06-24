@@ -41,10 +41,18 @@ Hermod/
 ```
 
 ## 当前阶段
-**Phase 1 Week 1** — 知识库种子数据 + Schema 设计
-- 5 条知识库条目（M3508, AK80, DRV8301, BMI088, STM32F407）
-- types.ts + schema.ts + validator.ts
-- 冲突检测：CAN ID / 引脚复用 / 供电预算
+**Phase 1 完成 → 进入 Phase 2**
+
+Phase 1 交付：
+- types.ts — 15+ 类型定义（HardwareDescription, MotorEntry, SensorEntry 等）
+- schema.ts — 7 条结构校验规则
+- validator.ts — CAN ID 冲突 / 功耗预算 / 外设引脚 三项语义校验
+- renderer.ts — EJS 渲染 + 文件写入
+- 7 个生成器：firmware, urdf, ros2-driver, gazebo, bom, claude-md, annotations
+- 8 个 EJS 模板：can_config.h, motor_foc.cpp, safety/limits.h, URDF, hardware_interface, bringup launch, BOM, CLAUDE.md
+- 7 条知识库：M3508, AK80-9, DRV8301, BMI088, RPLIDAR A3, STM32F407, 6S LiPo
+- 19 个测试全部通过
+- Demo：examples/diff-drive-inspector — 1 个 YAML → 11 个文件 → docker compose up
 
 ## 关键设计决策
 - **CAN ID 分配**：自动分配（按 motor 声明顺序递增），用户可在 YAML 显式覆盖
