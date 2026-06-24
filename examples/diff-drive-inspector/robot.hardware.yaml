@@ -1,0 +1,77 @@
+# ============================================================
+# 巡检机器人 C3 — 四轮差速
+# ============================================================
+# This is the single source of truth for your robot.
+# Hermod reads this file and generates firmware, URDF,
+# ROS 2 drivers, simulation config, BOM, and AI agent context.
+#
+# 所有知识库 ID (motor/driver/sensor/mcu/battery) 引用
+# packages/knowledge/ 中的条目。
+
+robot:
+  name: "巡检机器人-C3"
+  type: "diff_drive"
+  mcu: "stm32f407"
+  description: "室内巡检机器人，四轮差速驱动，搭载激光雷达和 IMU"
+
+# ---- 驱动轮 ----
+joints:
+  - name: "left_front_wheel"
+    type: "active"
+    motor: "dji-m3508"
+    driver: "drv8301"
+    canId: 0x201
+    role: "drive"
+
+  - name: "right_front_wheel"
+    type: "active"
+    motor: "dji-m3508"
+    driver: "drv8301"
+    canId: 0x202
+    role: "drive"
+
+  - name: "left_rear_wheel"
+    type: "active"
+    motor: "dji-m3508"
+    driver: "drv8301"
+    canId: 0x203
+    role: "drive"
+
+  - name: "right_rear_wheel"
+    type: "active"
+    motor: "dji-m3508"
+    driver: "drv8301"
+    canId: 0x204
+    role: "drive"
+
+# ---- 传感器 ----
+sensors:
+  - name: "lidar"
+    model: "rplidar-a3"
+    interface: "UART"
+    port: "/dev/ttyUSB0"
+    baudrate: 256000
+    mount:
+      x: 0.15
+      y: 0.0
+      z: 0.30
+
+  - name: "imu"
+    model: "bmi088"
+    interface: "SPI"
+    port: "SPI2"
+    mount:
+      x: 0.0
+      y: 0.0
+      z: 0.05
+
+# ---- 供电 ----
+power:
+  battery: "6s-lipo"
+  voltageNominal: 22.2
+  voltageRange: [18.0, 25.2]
+
+# ---- ROS 2 ----
+ros:
+  version: "humble"
+  namespace: "inspection_robot"

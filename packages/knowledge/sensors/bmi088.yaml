@@ -1,0 +1,42 @@
+# ============================================================
+# BMI088 — 6-Axis IMU (Accelerometer + Gyroscope)
+# ============================================================
+
+id: "bmi088"
+category: "sensor"
+type: "IMU"
+tags: ["6轴", "加速度计", "陀螺仪", "低噪声"]
+
+# ---- Physical Parameters ----
+physical:
+  weightG: 2
+  dimensionsMm: [3, 4.5, 0.95]
+
+# ---- Electrical Parameters ----
+electrical:
+  voltageV: 3.3
+  currentMa: 5
+  interface: "SPI"
+
+# ---- Performance ----
+performance:
+  accelRangeG: [3, 6, 12, 24]
+  gyroRangeDps: [125, 250, 500, 1000, 2000]
+  accelNoiseDensityUgPerSqrtHz: 175
+  gyroNoiseDensityMdpsPerSqrtHz: 10
+  maxOdrHz: 2000
+  builtInFilter: true
+  temperatureSensor: true
+
+# ---- @ai-lock: Safety Boundaries ----
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 85
+
+# ---- Source ----
+source:
+  datasheet: "https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi088/"
+  vendor: "Bosch Sensortec"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Ideal for drone/robot attitude estimation. SPI only — no I2C."

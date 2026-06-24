@@ -1,0 +1,45 @@
+# ============================================================
+# DRV8301 — 3-Phase Gate Driver with Current Shunt Amplifiers
+# ============================================================
+
+id: "drv8301"
+category: "driver"
+type: "3-phase-gate-driver"
+tags: ["FOC", "BLDC", "三相驱动", "电流采样"]
+
+supportedMotors: ["dji-m3508", "tmotor-ak80-9"]
+
+# ---- Electrical Limits ----
+electrical:
+  maxVoltageV: 60
+  maxCurrentA: 25
+  continuousCurrentA: 15
+
+# ---- Control Interface ----
+interface:
+  controlProtocol: "SPI"
+  spiMode: 0
+  maxFrequencyHz: 10000000
+
+# ---- Features ----
+features:
+  - "Built-in 1.5A buck converter"
+  - "3x current shunt amplifiers (programmable gain)"
+  - "SPI-configurable dead-time (50ns–500ns)"
+  - "Over-current protection with adjustable threshold"
+  - "Fault reporting via nFAULT pin + SPI registers"
+
+# ---- @ai-lock: Safety Boundaries ----
+safety:
+  maxVoltageV: 60
+  maxCurrentA: 25
+  maxTempC: 125
+  deadTimeNs: 200
+
+# ---- Source ----
+source:
+  datasheet: "https://www.ti.com/product/DRV8301"
+  vendor: "Texas Instruments"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Legacy part, NRND. Pin-compatible replacement: DRV8302."

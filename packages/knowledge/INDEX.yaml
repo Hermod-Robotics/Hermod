@@ -1,0 +1,27 @@
+# Hermod Knowledge Base Index
+# Each entry maps a category → file path relative to this directory.
+
+motors:
+  - id: "dji-m3508"
+    path: "motors/dji_m3508.yaml"
+    description: "DJI M3508 BLDC gear motor (RoboMaster)"
+  - id: "tmotor-ak80-9"
+    path: "motors/tmotor_ak80-9.yaml"
+    description: "T-Motor AK80-9 low-profile torque motor (quadruped)"
+
+drivers:
+  - id: "drv8301"
+    path: "drivers/drv8301.yaml"
+    description: "DRV8301 3-phase gate driver with current sensing"
+
+sensors:
+  - id: "bmi088"
+    path: "sensors/bmi088.yaml"
+    description: "Bosch BMI088 6-axis IMU"
+
+mcus:
+  - id: "stm32f407"
+    path: "mcus/stm32f407.yaml"
+    description: "STM32F407VGT6 Cortex-M4"
+
+batteries: []

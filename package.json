@@ -1,0 +1,16 @@
+{
+  "name": "hermod",
+  "version": "0.0.0",
+  "private": true,
+  "description": "AI-native infrastructure for robot engineering",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

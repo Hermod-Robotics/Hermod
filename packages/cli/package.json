@@ -1,0 +1,27 @@
+{
+  "name": "@hermod/cli",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Interactive CLI — project scaffolding wizard",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "hermod": "./dist/index.js",
+    "create-hermod": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "@hermod/engine": "workspace:*",
+    "commander": "^12.0.0",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  }
+}

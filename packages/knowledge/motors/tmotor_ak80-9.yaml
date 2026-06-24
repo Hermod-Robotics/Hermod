@@ -1,0 +1,72 @@
+# ============================================================
+# T-Motor AK80-9 — Low-Profile Torque Motor (Quadruped)
+# ============================================================
+
+id: "tmotor-ak80-9"
+category: "motor"
+type: "BLDC"
+tags: ["四足", "力矩电机", "低剖面", "外转子"]
+
+# ---- Physical Parameters ----
+physical:
+  weightG: 480
+  dimensionsMm: [98, 98, 38]
+  shaftDiameterMm: 12
+  mounting: "M4×8, 8-hole PCD 78mm"
+
+# ---- Electrical Parameters ----
+electrical:
+  ratedVoltageV: 42
+  ratedCurrentA: 8
+  peakCurrentA: 24
+  phaseResistanceOhm: 0.12
+  phaseInductanceMh: 0.08
+  polePairs: 21
+  kvRpmPerV: 100
+
+# ---- Mechanical Parameters ----
+mechanical:
+  ratedTorqueNm: 9
+  peakTorqueNm: 18
+  maxSpeedRpm: 600
+  reductionRatio: 9.0
+  backlashDeg: 0.0
+
+# ---- Control Interface ----
+control:
+  protocol: "CAN"
+  canBaudrate: 1000000
+  defaultCanId: 0x101
+  controlMode: ["position", "speed", "current"]
+  feedback: ["angle", "speed", "current", "temperature"]
+
+# ---- PID Defaults ----
+pidDefaults:
+  currentLoop:
+    kp: 1.2
+    ki: 0.08
+    kd: 0.0
+  speedLoop:
+    kp: 0.6
+    ki: 0.15
+    kd: 0.03
+  positionLoop:
+    kp: 3.0
+    ki: 0.0
+    kd: 0.2
+
+# ---- @ai-lock: Safety Boundaries ----
+safety:
+  maxCurrentA: 20
+  maxTempC: 100
+  maxSpeedRpm: 600
+  currentLimitSoftA: 16
+  watchdogTimeoutMs: 50
+
+# ---- Source ----
+source:
+  datasheet: "https://store.tmotor.com/product/ak80-9.html"
+  vendor: "T-Motor"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Commonly used in quadruped robots (MIT Cheetah style). 9:1 planetary gearbox."

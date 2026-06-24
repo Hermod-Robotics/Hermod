@@ -1,0 +1,46 @@
+# ============================================================
+# STM32F407VGT6 — ARM Cortex-M4 MCU (Discovery / DIY)
+# ============================================================
+
+id: "stm32f407"
+category: "mcu"
+architecture: "ARM-Cortex-M"
+tags: ["STM32", "Cortex-M4", "FPU", "电机控制"]
+
+# ---- Specifications ----
+specs:
+  core: "Cortex-M4 with FPU + DSP"
+  maxFrequencyMhz: 168
+  flashKb: 1024
+  sramKb: 192
+
+# ---- Peripherals ----
+peripherals:
+  uart: 4
+  spi: 3
+  i2c: 3
+  can: 2
+  gpio: 82
+  pwm: 12
+  adc: 16
+
+# ---- Available Packages ----
+packages:
+  - "LQFP-100"
+  - "LQFP-144"
+  - "LQFP-176"
+  - "BGA-176"
+
+# ---- @ai-lock: Safety Boundaries ----
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 85
+  maxFrequencyMhz: 168
+
+# ---- Source ----
+source:
+  datasheet: "https://www.st.com/en/microcontrollers-microprocessors/stm32f407vg.html"
+  vendor: "STMicroelectronics"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Popular in RoboMaster and DIY robot builds. 2× CAN controllers ideal for motor bus + sensor bus topology."
