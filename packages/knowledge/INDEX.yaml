@@ -18,10 +18,16 @@ sensors:
   - id: "bmi088"
     path: "sensors/bmi088.yaml"
     description: "Bosch BMI088 6-axis IMU"
+  - id: "rplidar-a3"
+    path: "sensors/rplidar_a3.yaml"
+    description: "Slamtec RPLIDAR A3 360° laser scanner"
 
 mcus:
   - id: "stm32f407"
     path: "mcus/stm32f407.yaml"
     description: "STM32F407VGT6 Cortex-M4"
 
-batteries: []
+batteries:
+  - id: "6s-lipo"
+    path: "batteries/6s_lipo.yaml"
+    description: "6S LiPo 22.2V 5200mAh 30C"

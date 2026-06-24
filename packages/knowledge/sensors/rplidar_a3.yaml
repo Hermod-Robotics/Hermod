@@ -1,0 +1,36 @@
+# ============================================================
+# RPLIDAR A3 — 360° Laser Range Scanner (Slamtec)
+# ============================================================
+
+id: "rplidar-a3"
+category: "sensor"
+type: "LIDAR"
+tags: ["激光雷达", "360度", "SLAM", "导航"]
+
+physical:
+  weightG: 190
+  dimensionsMm: [76, 76, 41]
+
+electrical:
+  voltageV: 5
+  currentMa: 600
+  interface: "UART"
+
+performance:
+  rangeM: [0.2, 25]
+  sampleRateHz: 16000
+  scanRateHz: [5, 20]
+  angularResolutionDeg: 0.225
+  wavelengthNm: 785
+  outdoorCompatible: false
+
+safety:
+  maxVoltageV: 5.5
+  maxTempC: 60
+
+source:
+  datasheet: "https://www.slamtec.com/en/Lidar/A3"
+  vendor: "Slamtec"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "RPLIDAR A3 uses PWM for motor speed control + UART for data."

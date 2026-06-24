@@ -1,0 +1,26 @@
+# ============================================================
+# 6S LiPo — 22.2V Drone/Robot Battery
+# ============================================================
+
+id: "6s-lipo"
+category: "battery"
+type: "LiPo"
+cells: 6
+configuration: "6S1P"
+
+nominalVoltageV: 22.2
+capacityMah: 5200
+continuousDischargeC: 30
+peakDischargeC: 60
+
+safety:
+  minVoltageV: 18.0
+  maxVoltageV: 25.2
+  maxTempC: 60
+  storageVoltageV: 22.8
+
+source:
+  vendor: "Generic"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Standard 6S LiPo. Continuous: 156A, Peak: 312A."
