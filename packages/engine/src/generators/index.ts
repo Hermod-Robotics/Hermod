@@ -39,7 +39,7 @@ export async function generateAll(
 
   // ── Simulation ──
   if (options.flags?.sim) {
-    const simFiles = await generateGazebo(hw, options, templatesDir);
+    const simFiles = await generateGazebo(hw, options, templatesDir, kb);
     results.push(...simFiles);
   }
 
