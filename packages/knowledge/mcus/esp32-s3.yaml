@@ -1,0 +1,34 @@
+id: "esp32-s3"
+category: "mcu"
+architecture: "Xtensa"
+tags: ["ESP32", "WiFi", "BLE", "AI加速"]
+
+specs:
+  core: "Xtensa LX7 dual-core + AI accelerator"
+  maxFrequencyMhz: 240
+  flashKb: 8192
+  sramKb: 512
+
+peripherals:
+  uart: 3
+  spi: 4
+  i2c: 2
+  can: 0
+  gpio: 45
+  pwm: 8
+  adc: 20
+
+packages:
+  - "QFN-56"
+
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 85
+  maxFrequencyMhz: 240
+
+source:
+  datasheet: "https://www.espressif.com/en/products/socs/esp32-s3"
+  vendor: "Espressif"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "WiFi/BLE native. No CAN controller — needs external MCP2515."

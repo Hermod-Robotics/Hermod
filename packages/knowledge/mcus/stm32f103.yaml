@@ -1,0 +1,35 @@
+id: "stm32f103"
+category: "mcu"
+architecture: "ARM-Cortex-M"
+tags: ["STM32", "入门", "BluePill", "经济型"]
+
+specs:
+  core: "Cortex-M3"
+  maxFrequencyMhz: 72
+  flashKb: 128
+  sramKb: 20
+
+peripherals:
+  uart: 3
+  spi: 2
+  i2c: 2
+  can: 1
+  gpio: 37
+  pwm: 4
+  adc: 10
+
+packages:
+  - "LQFP-48"
+  - "LQFP-64"
+
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 85
+  maxFrequencyMhz: 72
+
+source:
+  datasheet: "https://www.st.com/en/microcontrollers-microprocessors/stm32f103c8.html"
+  vendor: "STMicroelectronics"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "The classic Blue Pill. Minimal but works. 1× CAN, limited flash for complex FOC."

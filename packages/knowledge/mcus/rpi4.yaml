@@ -1,0 +1,34 @@
+id: "rpi4"
+category: "mcu"
+architecture: "ARM-Cortex-A"
+tags: ["树莓派", "Linux", "ROS", "上位机"]
+
+specs:
+  core: "Cortex-A72 quad-core"
+  maxFrequencyMhz: 1500
+  flashKb: 0
+  sramKb: 0
+
+peripherals:
+  uart: 5
+  spi: 2
+  i2c: 2
+  can: 0
+  gpio: 28
+  pwm: 2
+  adc: 0
+
+packages:
+  - "Raspberry Pi 4 Model B"
+
+safety:
+  maxVoltageV: 5.25
+  maxTempC: 85
+  maxFrequencyMhz: 1500
+
+source:
+  datasheet: "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"
+  vendor: "Raspberry Pi Foundation"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Not an MCU — a Linux SBC. Use as ROS companion computer alongside an MCU."

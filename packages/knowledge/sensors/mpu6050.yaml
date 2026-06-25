@@ -1,0 +1,31 @@
+id: "mpu6050"
+category: "sensor"
+type: "IMU"
+tags: ["6轴", "经济型", "Arduino", "入门"]
+
+physical:
+  weightG: 1
+  dimensionsMm: [4, 4, 1]
+
+electrical:
+  voltageV: 3.3
+  currentMa: 3.9
+  interface: "I2C"
+
+performance:
+  accelRangeG: [2, 4, 8, 16]
+  gyroRangeDps: [250, 500, 1000, 2000]
+  accelNoiseDensityUgPerSqrtHz: 400
+  maxOdrHz: 1000
+  builtInDmp: true
+
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 85
+
+source:
+  datasheet: "https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6050/"
+  vendor: "TDK InvenSense"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Entry-level IMU. Higher noise than BMI088. Built-in DMP for sensor fusion."

@@ -1,0 +1,22 @@
+id: "4s-lipo"
+category: "battery"
+type: "LiPo"
+cells: 4
+configuration: "4S1P"
+
+nominalVoltageV: 14.8
+capacityMah: 3300
+continuousDischargeC: 35
+peakDischargeC: 70
+
+safety:
+  minVoltageV: 12.0
+  maxVoltageV: 16.8
+  maxTempC: 60
+  storageVoltageV: 15.2
+
+source:
+  vendor: "Generic"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Mid-size 4S LiPo. Sweet spot for 12V motor systems. Continuous: 115A."

@@ -1,0 +1,29 @@
+id: "hc-sr04"
+category: "sensor"
+type: "Encoder"
+tags: ["超声波", "测距", "经济型", "避障"]
+
+physical:
+  weightG: 8
+  dimensionsMm: [45, 20, 15]
+
+electrical:
+  voltageV: 5
+  currentMa: 15
+  interface: "GPIO"
+
+performance:
+  rangeCm: [2, 400]
+  resolutionCm: 0.3
+  beamAngleDeg: 30
+  maxHz: 40
+
+safety:
+  maxVoltageV: 5.5
+  maxTempC: 70
+
+source:
+  vendor: "Generic"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Basic ultrasonic distance sensor. Use Trigger/Echo GPIO pins."

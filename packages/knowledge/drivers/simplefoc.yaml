@@ -1,0 +1,33 @@
+id: "simplefoc"
+category: "driver"
+type: "open-source-foc"
+tags: ["FOC", "开源", "Arduino", "教育", "BLDC"]
+
+supportedMotors: ["dji-m3508", "maxon-ec45"]
+
+electrical:
+  maxVoltageV: 24
+  maxCurrentA: 15
+  continuousCurrentA: 8
+
+interface:
+  controlProtocol: "PWM"
+
+features:
+  - "Open source Arduino/PlatformIO library"
+  - "Voltage/current/FOC torque control modes"
+  - "Magnetic encoder (AS5048A) support"
+  - "Inline current sensing"
+  - "No hardware-specific chip required"
+
+safety:
+  maxVoltageV: 24
+  maxCurrentA: 15
+  maxTempC: 85
+
+source:
+  datasheet: "https://docs.simplefoc.com/"
+  vendor: "SimpleFOC Community"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Not a physical chip — a firmware library. Runs on STM32, ESP32, Teensy, etc."

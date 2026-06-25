@@ -1,0 +1,22 @@
+id: "3s-lipo"
+category: "battery"
+type: "LiPo"
+cells: 3
+configuration: "3S1P"
+
+nominalVoltageV: 11.1
+capacityMah: 2200
+continuousDischargeC: 35
+peakDischargeC: 70
+
+safety:
+  minVoltageV: 9.0
+  maxVoltageV: 12.6
+  maxTempC: 60
+  storageVoltageV: 11.4
+
+source:
+  vendor: "Generic"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Standard 3S LiPo for small robots and RC vehicles. Continuous: 77A."

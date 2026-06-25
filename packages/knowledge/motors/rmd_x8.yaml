@@ -1,0 +1,50 @@
+id: "rmd-x8"
+category: "motor"
+type: "Servo"
+tags: ["谐波减速", "一体化", "机械臂", "轻量"]
+
+physical:
+  weightG: 280
+  dimensionsMm: [60, 60, 85]
+  shaftDiameterMm: 10
+  mounting: "M4×8, 6-hole PCD 50mm"
+
+electrical:
+  ratedVoltageV: 24
+  ratedCurrentA: 2.2
+  peakCurrentA: 6.0
+  phaseResistanceOhm: 0.5
+  phaseInductanceMh: 0.2
+  polePairs: 7
+  kvRpmPerV: 120
+
+mechanical:
+  ratedTorqueNm: 8.0
+  peakTorqueNm: 12.0
+  maxSpeedRpm: 60
+  reductionRatio: 50.0
+  backlashDeg: 0.05
+
+control:
+  protocol: "CAN"
+  canBaudrate: 1000000
+  defaultCanId: 0x141
+  controlMode: ["position", "speed", "current"]
+  feedback: ["angle", "speed", "current", "temperature"]
+
+pidDefaults:
+  positionLoop: { kp: 4.0, ki: 0.02, kd: 0.3 }
+  speedLoop: { kp: 0.5, ki: 0.1, kd: 0.02 }
+
+safety:
+  maxCurrentA: 5.5
+  maxTempC: 75
+  maxSpeedRpm: 60
+  currentLimitSoftA: 5.0
+  watchdogTimeoutMs: 50
+
+source:
+  vendor: "MyActuator"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Integrated harmonic drive servo. 50:1 reduction. Popular in lightweight arms."

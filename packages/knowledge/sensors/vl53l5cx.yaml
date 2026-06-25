@@ -1,0 +1,32 @@
+id: "vl53l5cx"
+category: "sensor"
+type: "ToF"
+tags: ["ToF", "8×8阵列", "避障", "近距离"]
+
+physical:
+  weightG: 2
+  dimensionsMm: [6.4, 3.0, 1.5]
+
+electrical:
+  voltageV: 3.3
+  currentMa: 20
+  interface: "I2C"
+
+performance:
+  resolution: "8×8"
+  fovDeg: 63
+  maxRangeM: 4
+  minRangeM: 0.02
+  maxHz: 60
+  multiZone: true
+
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 70
+
+source:
+  datasheet: "https://www.st.com/en/imaging-and-photonics-solutions/vl53l5cx.html"
+  vendor: "STMicroelectronics"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "8×8 multi-zone ToF. Ideal for close-range obstacle detection."

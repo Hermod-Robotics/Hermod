@@ -1,0 +1,30 @@
+id: "as5048a"
+category: "sensor"
+type: "Encoder"
+tags: ["磁编码器", "14-bit", "电机反馈"]
+
+physical:
+  weightG: 0.1
+  dimensionsMm: [3, 3, 0.8]
+
+electrical:
+  voltageV: 3.3
+  currentMa: 12
+  interface: "SPI"
+
+performance:
+  resolutionBits: 14
+  maxSpeedRpm: 30000
+  interfaceMode: "SPI (4-wire)"
+  daisyChain: true
+
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 125
+
+source:
+  datasheet: "https://ams.com/en/as5048a"
+  vendor: "ams-OSRAM"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Standard magnetic encoder for FOC. Used with SimpleFOC."

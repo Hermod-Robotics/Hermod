@@ -1,0 +1,51 @@
+id: "dji-m2006"
+category: "motor"
+type: "BLDC"
+tags: ["robomaster", "小型电机", "云台"]
+
+physical:
+  weightG: 90
+  dimensionsMm: [24, 24, 42]
+  shaftDiameterMm: 4
+  mounting: "M2×4"
+
+electrical:
+  ratedVoltageV: 24
+  ratedCurrentA: 1.5
+  peakCurrentA: 4.5
+  phaseResistanceOhm: 0.85
+  phaseInductanceMh: 0.35
+  polePairs: 7
+  kvRpmPerV: 250
+
+mechanical:
+  ratedTorqueNm: 0.18
+  peakTorqueNm: 0.5
+  maxSpeedRpm: 800
+  reductionRatio: 36.0
+  backlashDeg: 0.5
+
+control:
+  protocol: "CAN"
+  canBaudrate: 1000000
+  defaultCanId: 0x205
+  controlMode: ["position", "speed"]
+  feedback: ["angle", "speed", "temperature"]
+
+pidDefaults:
+  speedLoop: { kp: 0.3, ki: 0.05, kd: 0.01 }
+  positionLoop: { kp: 1.5, ki: 0.0, kd: 0.05 }
+
+safety:
+  maxCurrentA: 4.0
+  maxTempC: 70
+  maxSpeedRpm: 800
+  currentLimitSoftA: 3.5
+  watchdogTimeoutMs: 100
+
+source:
+  datasheet: "https://www.robomaster.com/en-US/products/components/general/M2006"
+  vendor: "DJI"
+  verifiedBy: ["robomaster-community"]
+  lastUpdated: "2025-06-25"
+  notes: "Smaller sibling of M3508. Commonly used for gimbals and small joints."

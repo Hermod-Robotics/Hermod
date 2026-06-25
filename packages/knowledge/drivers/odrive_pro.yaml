@@ -1,0 +1,35 @@
+id: "odrive-pro"
+category: "driver"
+type: "dual-axis-foc"
+tags: ["FOC", "双轴", "开源", "高性能"]
+
+supportedMotors: ["maxon-ec45", "tmotor-ak80-9", "dji-m3508"]
+
+electrical:
+  maxVoltageV: 56
+  maxCurrentA: 50
+  continuousCurrentA: 25
+
+interface:
+  controlProtocol: "CAN"
+  maxFrequencyHz: 50000000
+
+features:
+  - "Dual-axis FOC control"
+  - "CAN + USB + UART interfaces"
+  - "Encoder + hall sensor input per axis"
+  - "Anti-cogging algorithm"
+  - "Python API for tuning"
+  - "Open source firmware"
+
+safety:
+  maxVoltageV: 56
+  maxCurrentA: 50
+  maxTempC: 85
+
+source:
+  datasheet: "https://odriverobotics.com/"
+  vendor: "ODrive Robotics"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Dual-axis FOC driver. Open source firmware. Popular in quadruped and arm projects."

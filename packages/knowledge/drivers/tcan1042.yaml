@@ -1,0 +1,32 @@
+id: "tcan1042"
+category: "driver"
+type: "can-transceiver"
+tags: ["CAN", "收发器", "高速"]
+
+supportedMotors: []
+
+electrical:
+  maxVoltageV: 5.5
+  maxCurrentA: 0.07
+  continuousCurrentA: 0.05
+
+interface:
+  controlProtocol: "CAN"
+
+features:
+  - "5 Mbps CAN FD"
+  - "±70V bus fault protection"
+  - "Low-power standby mode"
+  - "1.8-5V I/O compatible"
+  - "Industry standard SOIC-8"
+
+safety:
+  maxVoltageV: 5.5
+  maxTempC: 150
+
+source:
+  datasheet: "https://www.ti.com/product/TCAN1042"
+  vendor: "Texas Instruments"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Essential companion to CAN controllers (STM32, MCP2515). Handles physical layer."

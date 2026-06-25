@@ -1,0 +1,48 @@
+id: "feetech-sts3215"
+category: "motor"
+type: "Servo"
+tags: ["舵机", "经济型", "机械臂", "教育"]
+
+physical:
+  weightG: 65
+  dimensionsMm: [40, 20, 40]
+  shaftDiameterMm: 6
+  mounting: "M2.5×4"
+
+electrical:
+  ratedVoltageV: 7.4
+  ratedCurrentA: 1.8
+  peakCurrentA: 3.5
+  phaseResistanceOhm: 0
+  phaseInductanceMh: 0
+  polePairs: 0
+  kvRpmPerV: 0
+
+mechanical:
+  ratedTorqueNm: 3.0
+  peakTorqueNm: 4.5
+  maxSpeedRpm: 50
+  reductionRatio: 300
+  backlashDeg: 0.2
+
+control:
+  protocol: "UART"
+  controlMode: ["position", "speed"]
+  feedback: ["angle", "speed", "current", "temperature"]
+
+pidDefaults:
+  positionLoop: { kp: 2.0, ki: 0.0, kd: 0.1 }
+
+safety:
+  maxCurrentA: 3.0
+  maxTempC: 65
+  maxSpeedRpm: 50
+  currentLimitSoftA: 2.8
+  watchdogTimeoutMs: 50
+
+source:
+  datasheet: "https://www.feetechrc.com/STS3215.html"
+  vendor: "Feetech"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Popular in budget robot arms (e.g. SO-100). TTL UART communication."

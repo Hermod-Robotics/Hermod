@@ -1,0 +1,35 @@
+id: "teensy4"
+category: "mcu"
+architecture: "ARM-Cortex-M"
+tags: ["高速", "实时控制", "电机", "Teensy"]
+
+specs:
+  core: "Cortex-M7 @ 600 MHz"
+  maxFrequencyMhz: 600
+  flashKb: 1984
+  sramKb: 1024
+
+peripherals:
+  uart: 8
+  spi: 3
+  i2c: 3
+  can: 2
+  gpio: 55
+  pwm: 31
+  adc: 14
+
+packages:
+  - "Teensy 4.0"
+  - "Teensy 4.1"
+
+safety:
+  maxVoltageV: 3.6
+  maxTempC: 85
+  maxFrequencyMhz: 600
+
+source:
+  datasheet: "https://www.pjrc.com/store/teensy40.html"
+  vendor: "PJRC"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Blazing fast Cortex-M7. 2× CAN + 31 PWM channels. Excellent for multi-motor control."

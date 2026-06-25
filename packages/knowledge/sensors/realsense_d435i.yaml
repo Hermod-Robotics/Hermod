@@ -1,0 +1,35 @@
+id: "realsense-d435i"
+category: "sensor"
+type: "Camera"
+tags: ["深度相机", "RGB-D", "SLAM", "Intel"]
+
+physical:
+  weightG: 72
+  dimensionsMm: [90, 25, 25]
+
+electrical:
+  voltageV: 5
+  currentMa: 900
+  interface: "USB"
+
+performance:
+  depthFovH: 87
+  depthFovV: 58
+  depthResolution: "1280×720"
+  depthFps: 90
+  rgbResolution: "1920×1080"
+  rgbFps: 30
+  imu: "BMI055 (built-in)"
+  minDepthM: 0.3
+  maxDepthM: 10
+
+safety:
+  maxVoltageV: 5.25
+  maxTempC: 60
+
+source:
+  datasheet: "https://www.intelrealsense.com/depth-camera-d435i/"
+  vendor: "Intel"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Standard RGB-D camera for robotics. Built-in IMU enables VIO/VSLAM."

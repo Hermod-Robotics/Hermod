@@ -1,0 +1,36 @@
+id: "tmc5160"
+category: "driver"
+type: "stepper-driver"
+tags: ["步进电机", "静音", "高精度", "Trinamic"]
+
+supportedMotors: []
+
+electrical:
+  maxVoltageV: 60
+  maxCurrentA: 10
+  continuousCurrentA: 5
+
+interface:
+  controlProtocol: "SPI"
+  spiMode: 3
+  maxFrequencyHz: 8000000
+
+features:
+  - "StealthChop2 silent operation"
+  - "SpreadCycle high-dynamic mode"
+  - "StallGuard2 sensorless stall detection"
+  - "CoolStep current reduction"
+  - "SixPoint ramp generator"
+  - "SPI + UART + Step/Dir interface"
+
+safety:
+  maxVoltageV: 60
+  maxCurrentA: 10
+  maxTempC: 150
+
+source:
+  datasheet: "https://www.trinamic.com/products/integrated-circuits/details/tmc5160/"
+  vendor: "Trinamic (Analog Devices)"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Best-in-class stepper driver. StallGuard enables sensorless homing."

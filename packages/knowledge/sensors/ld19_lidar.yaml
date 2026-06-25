@@ -1,0 +1,31 @@
+id: "ld19"
+category: "sensor"
+type: "LIDAR"
+tags: ["激光雷达", "经济型", "360度", "SLAM"]
+
+physical:
+  weightG: 95
+  dimensionsMm: [38, 38, 36]
+
+electrical:
+  voltageV: 5
+  currentMa: 350
+  interface: "UART"
+
+performance:
+  rangeM: [0.02, 12]
+  sampleRateHz: 4500
+  scanRateHz: [5, 13]
+  angularResolutionDeg: 0.5
+  outdoorCompatible: false
+
+safety:
+  maxVoltageV: 5.5
+  maxTempC: 50
+
+source:
+  datasheet: "https://www.ldrobot.com/en/product/ld19"
+  vendor: "LDROBOT"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "Budget D300 LiDAR alternative. ~$30. Good for indoor SLAM."

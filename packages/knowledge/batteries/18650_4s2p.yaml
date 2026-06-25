@@ -1,0 +1,22 @@
+id: "18650-4s2p"
+category: "battery"
+type: "LiIon"
+cells: 8
+configuration: "4S2P"
+
+nominalVoltageV: 14.4
+capacityMah: 6000
+continuousDischargeC: 10
+peakDischargeC: 20
+
+safety:
+  minVoltageV: 10.0
+  maxVoltageV: 16.8
+  maxTempC: 55
+  storageVoltageV: 14.8
+
+source:
+  vendor: "Generic"
+  verifiedBy: ["community"]
+  lastUpdated: "2025-06-25"
+  notes: "4S2P 18650 pack. Higher energy density than LiPo, lower discharge rate. 60A continuous."
