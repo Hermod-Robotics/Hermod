@@ -1,0 +1,44 @@
+# Tune PID — AI Agent Workflow
+
+> Generated for <%= robot.name %>. Use: "Help me tune the PID for <%= (activeJoints[0] && activeJoints[0].name) || 'motor' %>"
+
+## Pre-flight Checks
+
+1. Read `firmware/src/motor_foc.cpp` — understand current PID gains and `@ai-critical` markers
+2. Read `firmware/inc/safety/limits.h` — know the `@ai-lock` boundaries
+3. Read `docs/AI_ANNOTATIONS.md` — understand which parameters can be modified
+
+## PID Tuning Procedure
+
+### Step 1: Current Loop (innermost, fastest)
+- `@ai-critical`: Adjust Kp only — increase until slight overshoot on step response
+- Target: crisp current tracking without oscillation
+- `@ai-lock`: Never exceed `SAFE_*_MAX_CURRENT_A`
+
+### Step 2: Speed Loop
+- With current loop tuned, adjust speed Kp → Ki
+- `@ai-critical`: Ki must not cause integrator windup beyond `SAFE_*_SOFT_CURRENT_A`
+- Target: smooth velocity response, <5% overshoot
+
+### Step 3: Position Loop (outermost, slowest)
+- With inner loops stable, add Kp for position stiffness
+- `@ai-default`: Kd may help dampen overshoot
+- Target: critically damped position response
+
+## Rules
+
+- **Always tune from inner loop outward** (current → speed → position)
+- **Always test on simulation first** before deploying to real hardware
+- **Document the step response** — before/after plots
+- **Update `@ai-critical` comments** if you change default PID values with justification
+
+## Example
+
+> "The left_wheel speed loop is oscillating. Help me fix it."
+
+Agent should:
+1. Read current speed loop gains from `motor_foc.cpp`
+2. Identify which joint(s) use `left_wheel` motor
+3. Suggest reducing Kp or increasing Kd
+4. Remind that `@ai-critical` parameters require operator approval
+5. Suggest running a step response test to verify

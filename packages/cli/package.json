@@ -1,25 +1,53 @@
 {
-  "name": "@hermod/cli",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Interactive CLI — project scaffolding wizard",
+  "name": "create-hermod",
+  "version": "0.1.0",
+  "description": "Scaffold robot engineering projects with AI-native context — one YAML to firmware, URDF, ROS 2, and simulation",
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
-    "hermod": "./dist/index.js",
-    "create-hermod": "./dist/index.js"
+    "create-hermod": "./dist/index.js",
+    "hermod": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts",
-    "typecheck": "tsc --noEmit"
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "robotics",
+    "robot",
+    "scaffold",
+    "cli",
+    "ros",
+    "ros2",
+    "gazebo",
+    "firmware",
+    "urdf",
+    "ai-agent",
+    "code-generation"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hermod-Robotics/hermod.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/Hermod-Robotics/hermod#readme",
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
-    "@hermod/engine": "workspace:*",
     "commander": "^12.0.0",
+    "ejs": "^3.1.10",
+    "js-yaml": "^4.1.0",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
+    "@hermod/engine": "workspace:*",
     "@types/node": "^20.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.5.0"

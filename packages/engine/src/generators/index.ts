@@ -8,6 +8,7 @@ import { generateGazebo } from './gazebo';
 import { generateBom } from './bom';
 import { generateClaudeMd } from './claude-md';
 import { generateAnnotationRef } from './annotations';
+import { generateAiWorkflows } from './ai-workflows';
 
 /**
  * Run all generators against a validated HardwareDescription.
@@ -54,6 +55,10 @@ export async function generateAll(
   // ── AI Annotation Reference ──
   const annotFiles = await generateAnnotationRef(hw, options, kb);
   results.push(...annotFiles);
+
+  // ── AI Agent Workflows ──
+  const workflowFiles = await generateAiWorkflows(hw, options, templatesDir, kb);
+  results.push(...workflowFiles);
 
   return results;
 }

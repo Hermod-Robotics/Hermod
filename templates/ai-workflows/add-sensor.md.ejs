@@ -1,0 +1,49 @@
+# Add Sensor — AI Agent Workflow
+
+> Generated for <%= robot.name %>. Use: "Help me add a new sensor to <%= robot.name %>"
+
+## Pre-flight Checks
+
+1. Read `robot.hardware.yaml` — understand current hardware layout
+2. Read `packages/knowledge/sensors/` — check if sensor already in knowledge base
+3. Read `firmware/inc/can_config.h` — check available CAN IDs (if using CAN bus)
+
+## Steps
+
+1. **Add sensor to `robot.hardware.yaml`**
+   ```yaml
+   sensors:
+     - name: "<sensor_name>"
+       model: "<knowledge-base-id>"
+       interface: "<UART|SPI|I2C|USB|CAN|GPIO>"
+       port: "<port>"
+   ```
+
+2. **If sensor not in knowledge base**, create `packages/knowledge/sensors/<new_sensor>.yaml` following the template in `CONTRIBUTING.md`
+
+3. **Re-run generation**
+   ```bash
+   npx tsx scripts/generate.ts
+   ```
+
+4. **Verify changes**
+   - `firmware/` — new sensor initialization added
+   - `urdf/` — sensor mount link added (if mount configured)
+   - `ros2_ws/` — sensor driver node added to launch
+   - `CLAUDE.md` — updated with new hardware entry
+
+## Safety
+
+- `@ai-lock`: Never change existing motor CAN IDs to accommodate a new sensor
+- `@ai-critical`: Verify the selected port doesn't conflict with existing peripherals
+- `@ai-extend`: Add custom sensor processing code in the generated driver template
+
+## Example
+
+> "Add a VL53L5CX ToF sensor on I2C bus 1"
+
+Agent should:
+1. Confirm sensor exists in knowledge base (or create entry)
+2. Add to `robot.hardware.yaml` sensors list
+3. Run generation
+4. Verify no peripheral conflicts
