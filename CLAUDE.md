@@ -34,13 +34,18 @@ Hermod/
 │   │   ├── mcus/            # 5 entries
 │   │   ├── batteries/       # 4 entries
 │   │   └── INDEX.yaml       # 30 entries total
-│   └── cli/              # 交互式命令行（Phase 3）
-├── templates/            # EJS 模板文件 (11 files)
-│   ├── firmware/
+│   └── cli/              # CLI wizard + kb-loader
+│       └── src/
+│           ├── index.ts
+│           ├── kb-loader.ts
+│           └── commands/create.ts
+├── templates/            # EJS 模板文件 (13 files)
+│   ├── firmware/         # can_config.h, motor_foc.cpp, safety/limits.h
 │   ├── urdf/             # mobile + serial chain
 │   ├── ros2/launch/      # bringup + sim
 │   ├── sim/gazebo/       # SDF world + plugins
-│   └── docs/
+│   ├── ai-workflows/     # add-sensor, tune-pid, diagnose
+│   └── docs/             # BOM, CLAUDE.md
 ├── examples/
 │   ├── diff-drive-inspector/
 │   └── arm-6dof/
@@ -49,17 +54,26 @@ Hermod/
 ```
 
 ## 当前阶段
-**Phase 2 完成 → 进入 Phase 3**
+**Phase 3 完成 — 项目已可发布**
 
-Phase 2 交付：
-- 知识库：8 → 30 条（7 motors, 8 sensors, 6 drivers, 5 MCUs, 4 batteries）
-- 机器人类型：diff-drive + arm_6dof（串行链 URDF）
-- 仿真：Gazebo 差分驱动 + LiDAR + IMU 插件，Docker Compose 可启动
-- 模板：8 → 11 个（新增 world.sdf.ejs, sim.launch.py.ejs）
-- 生成器：urdf.ts 支持串行链，gazebo.ts 用 EJS 模板，ros2-driver.ts 生成 sim launch
-- Demo：2 个示例（diff-drive 13 files, arm-6dof 11 files）
-- 社区：CONTRIBUTING.md 含知识库贡献模板
+Phase 1-3 完整交付：
+- types.ts — 15+ 类型定义
+- schema.ts + validator.ts — 结构 + 语义校验
+- renderer.ts — EJS 渲染引擎
+- 8 个生成器 (firmware, urdf, ros2-driver, gazebo, bom, claude-md, annotations, ai-workflows)
+- 13 个 EJS 模板 (firmware×3, urdf×1, ros2×3, sim×1, docs×2, ai-workflows×3)
+- 30 条知识库 (7 motors, 8 sensors, 6 drivers, 5 MCUs, 4 batteries)
+- 2 个示例项目 (diff-drive 16 files, arm-6dof 11 files)
+- CLI 交互式向导 (create-hermod@0.1.0, 10 steps)
+- 3 个 AI Agent 工作流 (add-sensor, tune-pid, diagnose)
 - 19 tests 全部通过
+
+下一步：
+- 文档站点 (VitePress)
+- Demo 视频
+- MoveIt 仿真集成
+- 四足机器人类型
+- npm publish
 
 ## 关键设计决策
 - **CAN ID 分配**：自动分配（按 motor 声明顺序递增），用户可在 YAML 显式覆盖

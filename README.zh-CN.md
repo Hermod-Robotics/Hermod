@@ -142,8 +142,16 @@ robot.hardware.yaml          # 你只需要写这个
 | EJS 模板 | ✅ | 11 个模板 |
 | 机器人类型 | ✅ | diff-drive、arm_6dof |
 | Gazebo 仿真 | ✅ | 差分驱动 + LiDAR + IMU 插件 |
-| `@hermod/cli` — 交互式 CLI | ⏳ | Phase 3 |
+| `@hermod/cli` — 交互式 CLI | ✅ | 10 步向导，npm 发布就绪 |
 | `CONTRIBUTING.md` | ✅ | 硬件参数贡献指南 |
+| AI Agent 工作流 | ✅ | 3 个任务指南（添加传感器、PID 调参、故障诊断） |
+
+### 快速安装
+
+```bash
+npm create hermod@latest my-robot
+# 或: npx create-hermod my-robot
+```
 
 ### 路线图
 
@@ -151,7 +159,8 @@ robot.hardware.yaml          # 你只需要写这个
 |-------|------|:------:|
 | **Phase 1** | 核心引擎 + 演示 | ✅ |
 | **Phase 2** | 30 条知识库、2 种机器人、仿真可跑 | ✅ |
-| **Phase 3** | CLI 向导、Agent 工作流集成、npm 发布 | ⏳ |
+| **Phase 3** | CLI 向导、Agent 工作流、npm 发布 | ✅ |
+| **Phase 4** | 文档站、演示视频、MoveIt、四足、接线图 | ⏳ |
 
 ### 路线图
 

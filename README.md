@@ -142,8 +142,16 @@ Layer 1: Standard Parts Knowledge Base (motors, sensors, drivers, MCUs)
 | EJS Templates | ✅ | 11 templates |
 | Robot Types | ✅ | diff-drive, arm_6dof |
 | Gazebo Simulation | ✅ | diff-drive + LiDAR + IMU plugins |
-| `@hermod/cli` — interactive wizard | ⏳ | Phase 3 |
+| `@hermod/cli` — interactive wizard | ✅ | 10-step, npm publish ready |
 | `CONTRIBUTING.md` | ✅ | Hardware contribution guide |
+| AI Agent Workflows | ✅ | 3 task guides (add-sensor, tune-pid, diagnose) |
+
+### Quick Install
+
+```bash
+npm create hermod@latest my-robot
+# or: npx create-hermod my-robot
+```
 
 ### Roadmap
 
@@ -151,7 +159,8 @@ Layer 1: Standard Parts Knowledge Base (motors, sensors, drivers, MCUs)
 |-------|------|:------:|
 | **Phase 1** | Core engine + demo | ✅ |
 | **Phase 2** | 30 KB entries, 2 robot types, runnable sim | ✅ |
-| **Phase 3** | CLI wizard, agent workflow integration, npm publish | ⏳ |
+| **Phase 3** | CLI wizard, agent workflows, npm publish | ✅ |
+| **Phase 4** | Docs site, demo video, MoveIt, quadruped, wiring | ⏳ |
 
 ---
 
