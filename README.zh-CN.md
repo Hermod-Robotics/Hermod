@@ -121,19 +121,37 @@ robot.hardware.yaml          # 你只需要写这个
 ### Phase 1 ✅ 已完成
 
 - **引擎**：类型系统、结构校验、硬件校验、代码生成
-- **知识库**：7 条（2 电机、1 驱动、2 传感器、1 MCU、1 电池）
-- **模板**：8 个 EJS 模板，覆盖固件、URDF、ROS 2、仿真、文档
-- **测试**：19 个测试全部通过
-- **Demo**：`examples/diff-drive-inspector/` — 一个 YAML → 11 个文件 → Gazebo 仿真
+- **知识库**：7 条
+- **模板**：8 个 EJS 模板
+- **测试**：19 个测试
+- **Demo**：`examples/diff-drive-inspector/` — YAML → 13 文件 → Gazebo 仿真
 
-| 模块 | 状态 | 测试 |
-|--------|:------:|:-----:|
-| `@hermod/engine` — 类型、校验 | ✅ | 12 |
-| `@hermod/engine` — 生成器 | ✅ | 7 |
-| `@hermod/knowledge` — 知识库 | ✅ 7 条 | — |
-| `@hermod/cli` — 交互式 CLI | ⏳ Phase 3 | — |
-| EJS 模板 | ✅ 8 个 | — |
-| Demo — 差速巡检小车 | ✅ | — |
+### Phase 2 ✅ 已完成
+
+- **知识库**：30 条（7 电机、8 传感器、6 驱动、5 MCU、4 电池）
+- **机器人类型**：差速轮式 + 六轴机械臂（串行链）
+- **仿真**：Gazebo 含差分驱动、LiDAR、IMU 插件
+- **社区**：`CONTRIBUTING.md` 含 YAML 模板与质量规范
+- **Demo**：`examples/arm-6dof/` — 六轴机械臂，CAN + UART 混合驱动
+
+| 模块 | 状态 | 备注 |
+|--------|:------:|-------|
+| `@hermod/engine` — 类型、校验 | ✅ | 12 tests |
+| `@hermod/engine` — 生成器（7 个） | ✅ | 7 tests |
+| `@hermod/knowledge` — 知识库 | ✅ | 30 条 |
+| EJS 模板 | ✅ | 11 个模板 |
+| 机器人类型 | ✅ | diff-drive、arm_6dof |
+| Gazebo 仿真 | ✅ | 差分驱动 + LiDAR + IMU 插件 |
+| `@hermod/cli` — 交互式 CLI | ⏳ | Phase 3 |
+| `CONTRIBUTING.md` | ✅ | 硬件参数贡献指南 |
+
+### 路线图
+
+| 阶段 | 目标 | 状态 |
+|-------|------|:------:|
+| **Phase 1** | 核心引擎 + 演示 | ✅ |
+| **Phase 2** | 30 条知识库、2 种机器人、仿真可跑 | ✅ |
+| **Phase 3** | CLI 向导、Agent 工作流集成、npm 发布 | ⏳ |
 
 ### 路线图
 
@@ -172,17 +190,22 @@ Hermod/
 │   │   ├── batteries/                # 6s_lipo
 │   │   └── INDEX.yaml
 │   └── cli/                         # 交互式 CLI (Phase 3)
-├── templates/                       # EJS 模板 (8 个)
-│   ├── firmware/
-│   ├── urdf/
-│   ├── ros2/
-│   └── docs/
+├── templates/                       # EJS 模板 (11 个)
+│   ├── firmware/                    # can_config.h, motor_foc.cpp, safety/limits.h
+│   ├── urdf/                        # robot.urdf.xacro（移动 + 串行链）
+│   ├── ros2/launch/                 # 实物启动 + 仿真启动
+│   ├── sim/gazebo/                  # SDF 世界 + 传感器插件
+│   └── docs/                        # BOM.md, CLAUDE.md
 ├── examples/
-│   └── diff-drive-inspector/        # 完整演示
-│       ├── robot.hardware.yaml       # ← 你唯一需要写的文件
-│       ├── scripts/generate.ts       # 演示运行脚本
-│       └── generated/                # ← 11 个输出文件
-└── package.json                     # pnpm monorepo 根
+│   ├── diff-drive-inspector/        # 差速小车演示（13 文件）
+│   │   ├── robot.hardware.yaml
+│   │   ├── scripts/generate.ts
+│   │   └── generated/
+│   └── arm-6dof/                    # 六轴机械臂演示（11 文件）
+│       ├── robot.hardware.yaml
+│       ├── scripts/generate.ts
+│       └── generated/
+└── CONTRIBUTING.md                  # 硬件参数贡献指南
 ```
 
 ---

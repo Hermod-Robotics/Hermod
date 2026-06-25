@@ -28,31 +28,38 @@ Hermod/
 │   │       ├── generators/     # 代码生成器集合
 │   │       └── renderer.ts     # EJS 渲染 + 文件输出
 │   ├── knowledge/        # 标准件参数库 (YAML)
-│   │   ├── motors/
-│   │   ├── sensors/
-│   │   ├── drivers/
-│   │   ├── mcus/
-│   │   └── INDEX.yaml
+│   │   ├── motors/          # 7 entries
+│   │   ├── sensors/         # 8 entries
+│   │   ├── drivers/         # 6 entries
+│   │   ├── mcus/            # 5 entries
+│   │   ├── batteries/       # 4 entries
+│   │   └── INDEX.yaml       # 30 entries total
 │   └── cli/              # 交互式命令行（Phase 3）
-├── templates/            # EJS 模板文件
-├── examples/             # 完整示例项目
-├── docs/design/          # 设计文档 + 对话上下文
+├── templates/            # EJS 模板文件 (11 files)
+│   ├── firmware/
+│   ├── urdf/             # mobile + serial chain
+│   ├── ros2/launch/      # bringup + sim
+│   ├── sim/gazebo/       # SDF world + plugins
+│   └── docs/
+├── examples/
+│   ├── diff-drive-inspector/
+│   └── arm-6dof/
+├── CONTRIBUTING.md       # 社区贡献指南
 └── CLAUDE.md             # 本文件
 ```
 
 ## 当前阶段
-**Phase 1 完成 → 进入 Phase 2**
+**Phase 2 完成 → 进入 Phase 3**
 
-Phase 1 交付：
-- types.ts — 15+ 类型定义（HardwareDescription, MotorEntry, SensorEntry 等）
-- schema.ts — 7 条结构校验规则
-- validator.ts — CAN ID 冲突 / 功耗预算 / 外设引脚 三项语义校验
-- renderer.ts — EJS 渲染 + 文件写入
-- 7 个生成器：firmware, urdf, ros2-driver, gazebo, bom, claude-md, annotations
-- 8 个 EJS 模板：can_config.h, motor_foc.cpp, safety/limits.h, URDF, hardware_interface, bringup launch, BOM, CLAUDE.md
-- 7 条知识库：M3508, AK80-9, DRV8301, BMI088, RPLIDAR A3, STM32F407, 6S LiPo
-- 19 个测试全部通过
-- Demo：examples/diff-drive-inspector — 1 个 YAML → 11 个文件 → docker compose up
+Phase 2 交付：
+- 知识库：8 → 30 条（7 motors, 8 sensors, 6 drivers, 5 MCUs, 4 batteries）
+- 机器人类型：diff-drive + arm_6dof（串行链 URDF）
+- 仿真：Gazebo 差分驱动 + LiDAR + IMU 插件，Docker Compose 可启动
+- 模板：8 → 11 个（新增 world.sdf.ejs, sim.launch.py.ejs）
+- 生成器：urdf.ts 支持串行链，gazebo.ts 用 EJS 模板，ros2-driver.ts 生成 sim launch
+- Demo：2 个示例（diff-drive 13 files, arm-6dof 11 files）
+- 社区：CONTRIBUTING.md 含知识库贡献模板
+- 19 tests 全部通过
 
 ## 关键设计决策
 - **CAN ID 分配**：自动分配（按 motor 声明顺序递增），用户可在 YAML 显式覆盖

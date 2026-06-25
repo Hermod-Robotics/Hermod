@@ -121,26 +121,36 @@ Layer 1: Standard Parts Knowledge Base (motors, sensors, drivers, MCUs)
 ### Phase 1 ✅ Complete
 
 - **Engine**: types, schema validation, hardware validation, code generation
-- **Knowledge Base**: 7 entries (2 motors, 1 driver, 2 sensors, 1 MCU, 1 battery)
-- **Templates**: 8 EJS templates covering firmware, URDF, ROS 2, simulation, docs
-- **Tests**: 19 tests passing
-- **Demo**: `examples/diff-drive-inspector/` — YAML → 11 files → Gazebo simulation
+- **Knowledge Base**: 7 entries
+- **Templates**: 8 EJS templates
+- **Tests**: 19 tests
+- **Demo**: `examples/diff-drive-inspector/` — YAML → 13 files → Gazebo simulation
 
-| Module | Status | Tests |
-|--------|:------:|:-----:|
-| `@hermod/engine` — types, schema, validator | ✅ | 12 |
-| `@hermod/engine` — generators | ✅ | 7 |
-| `@hermod/knowledge` | ✅ 7 entries | — |
-| `@hermod/cli` — interactive wizard | ⏳ Phase 3 | — |
-| EJS Templates | ✅ 8 templates | — |
-| Demo — diff-drive inspector | ✅ | — |
+### Phase 2 ✅ Complete
+
+- **Knowledge Base**: 30 entries (7 motors, 8 sensors, 6 drivers, 5 MCUs, 4 batteries)
+- **Robot Types**: diff-drive (wheeled) + arm_6dof (serial chain manipulator)
+- **Simulation**: Gazebo with diff-drive, LiDAR, and IMU plugins
+- **Community**: `CONTRIBUTING.md` with YAML template and quality guidelines
+- **Demo**: `examples/arm-6dof/` — 6-DOF manipulator arm with CAN + UART motors
+
+| Module | Status | Notes |
+|--------|:------:|-------|
+| `@hermod/engine` — types, schema, validator | ✅ | 12 tests |
+| `@hermod/engine` — generators (7 modules) | ✅ | 7 tests |
+| `@hermod/knowledge` | ✅ | 30 entries |
+| EJS Templates | ✅ | 11 templates |
+| Robot Types | ✅ | diff-drive, arm_6dof |
+| Gazebo Simulation | ✅ | diff-drive + LiDAR + IMU plugins |
+| `@hermod/cli` — interactive wizard | ⏳ | Phase 3 |
+| `CONTRIBUTING.md` | ✅ | Hardware contribution guide |
 
 ### Roadmap
 
 | Phase | Goal | Status |
 |-------|------|:------:|
 | **Phase 1** | Core engine + demo | ✅ |
-| **Phase 2** | 30+ KB entries, 4 robot types, wiring diagrams | ⏳ |
+| **Phase 2** | 30 KB entries, 2 robot types, runnable sim | ✅ |
 | **Phase 3** | CLI wizard, agent workflow integration, npm publish | ⏳ |
 
 ---
@@ -172,17 +182,22 @@ Hermod/
 │   │   ├── batteries/                # 6s_lipo
 │   │   └── INDEX.yaml
 │   └── cli/                         # Interactive CLI (Phase 3)
-├── templates/                       # EJS templates (8 files)
-│   ├── firmware/
-│   ├── urdf/
-│   ├── ros2/
-│   └── docs/
+├── templates/                       # EJS templates (11 files)
+│   ├── firmware/                    # can_config.h, motor_foc.cpp, safety/limits.h
+│   ├── urdf/                        # robot.urdf.xacro (mobile + serial chain)
+│   ├── ros2/launch/                 # bringup + sim launch
+│   ├── sim/gazebo/                  # SDF world with plugins
+│   └── docs/                        # BOM.md, CLAUDE.md
 ├── examples/
-│   └── diff-drive-inspector/        # Complete demo
-│       ├── robot.hardware.yaml       # ← the only file you write
-│       ├── scripts/generate.ts       # Demo runner
-│       └── generated/                # ← 11 output files
-└── package.json                     # pnpm monorepo root
+│   ├── diff-drive-inspector/        # Diff-drive demo (13 files)
+│   │   ├── robot.hardware.yaml
+│   │   ├── scripts/generate.ts
+│   │   └── generated/
+│   └── arm-6dof/                    # 6-DOF arm demo (11 files)
+│       ├── robot.hardware.yaml
+│       ├── scripts/generate.ts
+│       └── generated/
+└── CONTRIBUTING.md                  # Hardware contribution guide
 ```
 
 ---
