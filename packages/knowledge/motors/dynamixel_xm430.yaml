@@ -1,0 +1,60 @@
+# ============================================================
+# Dynamixel XM430-W350 — Smart Servo (ROBOTIS)
+# ============================================================
+
+id: "dynamixel-xm430"
+category: "motor"
+type: "Servo"
+tags: ["舵机", "机械臂", "手腕关节", "智能伺服"]
+
+physical:
+  weightG: 82
+  dimensionsMm: [28.5, 46.5, 34]
+  shaftDiameterMm: 6
+  mounting: "M2.5×4"
+
+electrical:
+  ratedVoltageV: 12
+  ratedCurrentA: 1.5
+  peakCurrentA: 2.8
+  phaseResistanceOhm: 0
+  phaseInductanceMh: 0
+  polePairs: 0
+  kvRpmPerV: 0
+
+mechanical:
+  ratedTorqueNm: 4.8
+  peakTorqueNm: 6.2
+  maxSpeedRpm: 45
+  reductionRatio: 353.5
+  backlashDeg: 0.1
+
+control:
+  protocol: "UART"
+  canBaudrate:
+  defaultCanId:
+  controlMode: ["position", "speed", "current"]
+  feedback: ["angle", "speed", "current", "temperature"]
+
+pidDefaults:
+  positionLoop:
+    kp: 3.5
+    ki: 0.0
+    kd: 0.15
+  speedLoop:
+    kp: 0.3
+    ki: 0.05
+    kd: 0.01
+
+safety:
+  maxCurrentA: 2.5
+  maxTempC: 70
+  maxSpeedRpm: 45
+  currentLimitSoftA: 2.0
+  watchdogTimeoutMs: 50
+
+source:
+  datasheet: "https://emanual.robotis.com/docs/en/dxl/x/xm430-w350/"
+  vendor: "ROBOTIS"
+  verifiedBy: ["community"]
+  notes: "Common in small robot arms and grippers. TTL UART communication."

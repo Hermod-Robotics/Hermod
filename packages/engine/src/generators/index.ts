@@ -30,7 +30,7 @@ export async function generateAll(
   results.push(...firmwareFiles);
 
   // ── URDF ──
-  const urdfFiles = await generateUrdf(hw, options, templatesDir);
+  const urdfFiles = await generateUrdf(hw, options, templatesDir, kb);
   results.push(...urdfFiles);
 
   // ── ROS 2 Driver ──

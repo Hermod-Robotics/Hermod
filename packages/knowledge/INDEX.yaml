@@ -8,6 +8,9 @@ motors:
   - id: "tmotor-ak80-9"
     path: "motors/tmotor_ak80-9.yaml"
     description: "T-Motor AK80-9 low-profile torque motor (quadruped)"
+  - id: "dynamixel-xm430"
+    path: "motors/dynamixel_xm430.yaml"
+    description: "Dynamixel XM430-W350 smart servo (ROBOTIS)"
 
 drivers:
   - id: "drv8301"

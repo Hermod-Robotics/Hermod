@@ -1,0 +1,77 @@
+# ============================================================
+# 六轴协作机械臂 — 6-DOF Manipulator Arm
+# ============================================================
+# Hermod reads this file and generates firmware, URDF,
+# ROS 2 drivers, simulation config, BOM, and AI agent context.
+
+robot:
+  name: "六轴协作机械臂"
+  type: "arm_6dof"
+  mcu: "stm32f407"
+  description: "桌面级六轴协作机械臂，前 3 关节力矩电机直驱，腕部 3 关节智能舵机"
+
+# ---- Joints ----
+joints:
+  - name: "joint_1_base"
+    type: "active"
+    motor: "tmotor-ak80-9"
+    driver: "drv8301"
+    canId: 0x101
+    role: "manipulation"
+
+  - name: "joint_2_shoulder"
+    type: "active"
+    motor: "tmotor-ak80-9"
+    driver: "drv8301"
+    canId: 0x102
+    role: "manipulation"
+
+  - name: "joint_3_elbow"
+    type: "active"
+    motor: "tmotor-ak80-9"
+    driver: "drv8301"
+    canId: 0x103
+    role: "manipulation"
+
+  - name: "joint_4_wrist_roll"
+    type: "active"
+    motor: "dynamixel-xm430"
+    driver: "drv8301"
+    canId: 0x104
+    role: "manipulation"
+
+  - name: "joint_5_wrist_pitch"
+    type: "active"
+    motor: "dynamixel-xm430"
+    driver: "drv8301"
+    canId: 0x105
+    role: "manipulation"
+
+  - name: "joint_6_wrist_yaw"
+    type: "active"
+    motor: "dynamixel-xm430"
+    driver: "drv8301"
+    canId: 0x106
+    role: "manipulation"
+
+# ---- Sensors ----
+sensors:
+  - name: "base_imu"
+    model: "bmi088"
+    interface: "SPI"
+    port: "SPI2"
+    mount:
+      x: 0.0
+      y: 0.0
+      z: 0.05
+
+# ---- Power ----
+power:
+  battery: "6s-lipo"
+  voltageNominal: 22.2
+  voltageRange: [18.0, 25.2]
+
+# ---- ROS 2 ----
+ros:
+  version: "humble"
+  namespace: "arm_manipulator"
